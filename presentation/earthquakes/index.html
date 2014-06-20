@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>EarthQuakes: A Global View</title>
+  <meta charset="utf-8">
+  <meta name="description" content="EarthQuakes: A Global View">
+  <meta name="author" content="Michael Reed">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>EarthQuakes: A Global View</h1>
+    <h2>Displaying the global distribution of Earthquakes from 1774 to 2013</h2>
+    <p>Michael Reed<br/></p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>Introduction</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>The goal of this application was to both <strong>summarise</strong> and <strong>display</strong> data representing reported earthquakes around the globe. </p>
+
+<ul>
+<li><strong>Easy to use</strong> with simple inputs such as sliders and checkboxes</li>
+<li><strong>Interactive</strong> with dynamic reactive output</li>
+<li><strong>Intuitive plots</strong>  with points displayed on a global map</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Data</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>The data for this application was provided by the USGS Earthquakes Hazard Program, specifically the Earthquake Archive Catalog available at :</p>
+
+<p><a href="http://earthquake.usgs.gov/earthquakes/search/">http://earthquake.usgs.gov/earthquakes/search/</a></p>
+
+<p>The data selected for the application represents all recorded earthquakes around the globe of a magnitude of 5 or higher, during the period 01/01/1974 to 31/12/2013. A subset of the data is created based on the year or daterange selected, depending on which checkbox is selected.</p>
+
+<h2>Calculations</h2>
+
+<p>The following summary calculations are made:</p>
+
+<ul>
+<li>Count - The total number of earthquakes during the selected time period</li>
+<li>Mean - The average magnitude of earthquakes during the selected time period</li>
+<li>Worst - The place/location of the highest magnitude earthquake during the selected time period. </li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Interactivity</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>An chart is shown that represents a histogram of the earthquakes per year, with an interactive line which moves as the year being selected on the slider changes:</p>
+
+<pre><code class="r">hist(data$year, breaks = 50, xlab = &quot;Year&quot;, ylab = &quot;Number of EarthQuakes&quot;, 
+    main = &quot;&quot;)
+lines(c(2000, 2000), c(0, 5000), col = &quot;#FF7519&quot;, lwd = 5)
+</code></pre>
+
+<p><img src="figure/unnamed-chunk-2.png" alt="plot of chunk unnamed-chunk-2"> </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Mapping</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>A Bounding Box is used to filter the data and select the size of the plot</p>
+
+<p>OpenStreetMap:</p>
+
+<ul>
+<li>Get a map using the <code>openmap()</code> function</li>
+<li>Project the map to the right coordinate system using <code>openproj()</code></li>
+<li>Plot the map using <code>autoplot()</code> (a ggplot2 function which allows different objects)</li>
+<li>Plot the lattitude and longitude points on the map using <code>geom_point()</code></li>
+</ul>
+
+<p>The points are then coloured and sized based on the magnitude of the earthquake, with small yellow points representing low mangitude earthquakes (5) and large red points representing high mangitude earthquakes (10).</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='Introduction'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='Data'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='Interactivity'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Mapping'>
+         4
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
